@@ -11,7 +11,11 @@ import { getToken } from 'firebase/messaging';
  * displaying a time selection modal, and saving the FCM token to the backend.
  */
 const DailyReminderButton = () => {
-  const [permission, setPermission] = useState<NotificationPermission>('');
+  const [permission, setPermission] = useState<NotificationPermission>(
+    typeof window !== 'undefined' && 'Notification' in window
+      ? Notification.permission
+      : 'default'
+  );
   const [showModal, setShowModal] = useState(false);
   const [time, setTime] = useState('09:00');
 
