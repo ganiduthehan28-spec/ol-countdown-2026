@@ -1,10 +1,16 @@
+// src/components/Footer.tsx
 
-export default function Footer() {
+'use client';
+
+import React from 'react';
+
+const Footer: React.FC = () => {
   return (
-    <footer className="text-center">
-      <p>Prepared by: Admin Apex Success Behind 9As Crew</p>
-      <p>Contact me: 0742674380</p>
-      <p>&copy;2026.&quot;Success behind 9As&quot; WhatsApp Channel</p>
+    <footer className="mt-10 p-5 text-center bg-gray-800 text-white w-full box-border">
+      <p>&copy; 2024 O/L Countdown. All rights reserved.</p>
+      <p>Designed with ❤️</p>
     </footer>
   );
-}
+};
+
+export default Footer;

@@ -1,34 +1,41 @@
+// src/components/StudyTips.tsx
+
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
-import { tips } from '@/lib/tips';
+import React from 'react';
 
-export default function StudyTips() {
-  const [tip, setTip] = useState({ en: '', si: '' });
+const studyTips = [
+  "Break down your study sessions into smaller, manageable chunks.",
+  "Find a quiet and comfortable place to study.",
+  "Take regular breaks to avoid burnout.",
+  "Review your notes regularly to reinforce learning.",
+  "Test yourself frequently to identify areas for improvement.",
+  "Stay hydrated and eat healthy snacks.",
+  "Get enough sleep to optimize your brain function.",
+  "Don't be afraid to ask for help when you need it.",
+];
 
-  const updateTip = useCallback(() => {
-    const randomIndex = Math.floor(Math.random() * tips.length);
-    setTip(tips[randomIndex]);
-  }, []);
+const StudyTips: React.FC = () => {
+  const [currentTipIndex, setCurrentTipIndex] = React.useState(0);
 
-  useEffect(() => {
-    updateTip();
-    const interval = setInterval(updateTip, 20000); // Update every 20 seconds
+  const handleNextTip = () => {
+    setCurrentTipIndex((prevIndex) => (prevIndex + 1) % studyTips.length);
+  };
 
-    return () => clearInterval(interval);
-  }, [updateTip]);
+  const handlePreviousTip = () => {
+    setCurrentTipIndex((prevIndex) => (prevIndex - 1 + studyTips.length) % studyTips.length);
+  };
 
   return (
-    <div className="tip-bar w-full max-w-2xl p-4 sm:p-6">
-      <h3 className="text-lg font-semibold mb-2">Study Tip:</h3>
-      <p className="tip-en">{tip.en}</p>
-      {tip.si && <p className="tip-si">{tip.si}</p>}
-      <button
-        onClick={updateTip}
-        className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        New Tip
-      </button>
+    <div className="mt-10 p-5 bg-blue-50 rounded-lg text-center shadow-md max-w-xl w-11/12">
+      <h2 className="text-2xl font-semibold text-blue-600">Study Tip of the Day</h2>
+      <p className="text-lg my-5 text-gray-700">{studyTips[currentTipIndex]}</p>
+      <div className="flex justify-center gap-3">
+        <button onClick={handlePreviousTip} className="px-4 py-2 rounded-md border-none bg-blue-500 text-white cursor-pointer text-base hover:bg-blue-600">Previous</button>
+        <button onClick={handleNextTip} className="px-4 py-2 rounded-md border-none bg-blue-500 text-white cursor-pointer text-base hover:bg-blue-600">Next</button>
+      </div>
     </div>
   );
-}
+};
+
+export default StudyTips;

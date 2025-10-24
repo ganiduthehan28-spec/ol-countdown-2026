@@ -44,46 +44,18 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
     }
 
     timerComponents.push(
-      <span key={interval} style={timeCardStyle}>
-        <div style={timeValueStyle}>{@ts-ignore timeLeft[interval]}</div>
-        <div style={timeUnitStyle}>{interval}</div>
+      <span key={interval} className="bg-gray-700 rounded-lg p-5 text-white min-w-[100px] text-center shadow-lg">
+        <div className="text-4xl font-bold">{@ts-ignore timeLeft[interval]}</div>
+        <div className="text-sm uppercase opacity-80 mt-1">{interval}</div>
       </span>
     );
   });
 
   return (
-    <div style={countdownContainerStyle}>
-      {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+    <div className="flex justify-center gap-5 flex-wrap mt-10">
+      {timerComponents.length ? timerComponents : <span className="text-xl text-red-500">Time's up!</span>}
     </div>
   );
-};
-
-const countdownContainerStyle: React.CSSProperties = {
-  display: 'flex',
-  justifyContent: 'center',
-  gap: '20px',
-  flexWrap: 'wrap',
-  marginTop: '20px',
-};
-
-const timeCardStyle: React.CSSProperties = {
-  background: 'rgba(0, 0, 0, 0.7)',
-  borderRadius: '10px',
-  padding: '20px',
-  textAlign: 'center',
-  minWidth: '100px',
-  color: 'white',
-};
-
-const timeValueStyle: React.CSSProperties = {
-  fontSize: '2.5rem',
-  fontWeight: 'bold',
-};
-
-const timeUnitStyle: React.CSSProperties = {
-  fontSize: '0.9rem',
-  textTransform: 'uppercase',
-  opacity: 0.8,
 };
 
 export default Countdown;

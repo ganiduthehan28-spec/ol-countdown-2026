@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import DailyReminderButton from '@/components/DailyReminderButton';
 import PWAInstallButton from '@/components/PWAInstallButton';
+import Footer from '@/components/Footer';
+import './globals.css'; // Import global styles
 
 /**
  * The metadata for the app.
@@ -51,6 +53,7 @@ export default function RootLayout({
         </div>
 
         {children}
+        <Footer />
 
         {/* Service Worker Registration */}
         <Script id="sw-registration" strategy="lazyOnload">

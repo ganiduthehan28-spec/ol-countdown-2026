@@ -90,69 +90,30 @@ const DailyReminderButton = () => {
       <button
         onClick={handleGetReminders}
         disabled={permission === 'granted'}
-        style={{
-          padding: '10px 20px',
-          borderRadius: '5px',
-          border: 'none',
-          backgroundColor: permission === 'granted' ? '#ccc' : '#0070f3',
-          color: 'white',
-          cursor: 'pointer',
-        }}
+        className="px-5 py-2 rounded-md border-none bg-blue-600 text-white cursor-pointer text-base hover:bg-blue-700 disabled:bg-gray-400"
       >
         {permission === 'granted' ? 'Reminder Set' : 'Get Daily Reminders'}
       </button>
 
       {showModal && (
-        <div style={modalOverlayStyle}>
-          <div style={modalContentStyle}>
-            <h3>Select a time for your daily reminder</h3>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-lg text-center shadow-lg max-w-sm w-full">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Select a time for your daily reminder</h3>
             <input
               type="time"
               value={time}
               onChange={(e) => setTime(e.target.value)}
-              style={{ margin: '10px 0', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+              className="w-full p-2 border border-gray-300 rounded-md mb-4 text-gray-700"
             />
-            <div>
-              <button onClick={handleSaveTime} style={{ ...buttonStyle, marginRight: '10px', backgroundColor: '#0070f3' }}>Save</button>
-              <button onClick={() => setShowModal(false)} style={{ ...buttonStyle, backgroundColor: '#6c757d' }}>Cancel</button>
+            <div className="flex justify-end gap-3">
+              <button onClick={handleSaveTime} className="px-4 py-2 rounded-md border-none bg-blue-600 text-white cursor-pointer hover:bg-blue-700">Save</button>
+              <button onClick={() => setShowModal(false)} className="px-4 py-2 rounded-md border border-gray-300 bg-gray-200 text-gray-800 cursor-pointer hover:bg-gray-300">Cancel</button>
             </div>
           </div>
         </div>
       )}
     </>
   );
-};
-
-// Basic styling for the modal and buttons
-const modalOverlayStyle: React.CSSProperties = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  backgroundColor: 'rgba(0,0,0,0.5)',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  zIndex: 1000,
-};
-
-const modalContentStyle: React.CSSProperties = {
-  backgroundColor: 'white',
-  padding: '20px',
-  borderRadius: '8px',
-  textAlign: 'center',
-  boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-  maxWidth: '300px',
-  width: '90%',
-};
-
-const buttonStyle: React.CSSProperties = {
-  padding: '10px 15px',
-  borderRadius: '5px',
-  border: 'none',
-  color: 'white',
-  cursor: 'pointer',
 };
 
 export default DailyReminderButton;

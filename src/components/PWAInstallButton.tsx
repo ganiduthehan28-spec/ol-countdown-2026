@@ -60,14 +60,7 @@ const PWAInstallButton = () => {
   return (
     <button
       onClick={handleInstall}
-      style={{
-        padding: '10px 20px',
-        borderRadius: '5px',
-        border: 'none',
-        backgroundColor: '#28a745',
-        color: 'white',
-        cursor: 'pointer',
-      }}
+      className="px-5 py-2 rounded-md border-none bg-green-600 text-white cursor-pointer text-base hover:bg-green-700"
     >
       Add to Home Screen
     </button>
