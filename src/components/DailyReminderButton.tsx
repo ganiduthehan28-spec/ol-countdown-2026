@@ -26,7 +26,7 @@ const DailyReminderButton = () => {
     }
   };
 
-  const saveToken = async (selectedTime) => {
+  const saveToken = async (selectedTime: string) => {
     try {
       const token = await getToken(messaging, { vapidKey: 'BIFEdgUNUtPAlAaCGZuJjk17Qkt6vje3WBJSSxRH4pHsAIom8YC4AwcT_wHlfm5o2bOob7Un7y-b9TboG-MI_0k' });
       if (token) {
