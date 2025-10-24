@@ -5,12 +5,12 @@
 @tailwind utilities;
 
 :root {
-  --background-color: #0a0a0a; /* Very dark background */
-  --text-color: #e0e0e0; /* Light gray text */
+  --background-color: #e0f7fa; /* Light blue background */
+  --text-color: #263238; /* Dark gray text */
   --primary-color: #00bcd4; /* Cyan for accents */
   --secondary-color: #ff4081; /* Pink for secondary accents */
-  --card-background: #1a1a1a; /* Darker gray for cards */
-  --border-color: #333333;
+  --card-background: #ffffff; /* White for cards */
+  --border-color: #b2ebf2;
 }
 
 html,
