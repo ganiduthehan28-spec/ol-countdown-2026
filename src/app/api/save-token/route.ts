@@ -1,7 +1,7 @@
 // src/app/api/save-token/route.ts
 
 import { NextResponse } from 'next/server';
-import { db } from '../../../src/lib/firebase-admin';
+import { db } from '../../../lib/firebase-admin';
 
 /**
  * API route to handle saving FCM tokens to Firestore.
