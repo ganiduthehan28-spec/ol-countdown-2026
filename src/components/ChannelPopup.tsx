@@ -7,7 +7,7 @@ export default function ChannelPopup() {
 
   useEffect(() => {
     // Show popup 45 seconds after page load
-    const timer = setTimeout(() => setShow(true), 30000); // 30,000 ms = 30 seconds
+    const timer = setTimeout(() => setShow(true), 25000); // 25,000 ms = 25 seconds
 
     return () => clearTimeout(timer); // cleanup timer if user leaves early
   }, []);

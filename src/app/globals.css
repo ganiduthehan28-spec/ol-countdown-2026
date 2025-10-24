@@ -5,20 +5,19 @@
 @tailwind utilities;
 
 :root {
-  --background-color: #1a202c; /* Dark background */
-  --text-color: #e2e8f0; /* Light text */
-  --primary-color: #63b3ed; /* Blue for accents */
-  --secondary-color: #4fd1c5; /* Teal for secondary accents */
-  --card-background: #2d3748; /* Slightly lighter dark for cards */
-  --border-color: #4a5568;
+  --background-color: #0a0a0a; /* Very dark background */
+  --text-color: #e0e0e0; /* Light gray text */
+  --primary-color: #00bcd4; /* Cyan for accents */
+  --secondary-color: #ff4081; /* Pink for secondary accents */
+  --card-background: #1a1a1a; /* Darker gray for cards */
+  --border-color: #333333;
 }
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Poppins', sans-serif; /* Assuming Poppins from previous context */
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;

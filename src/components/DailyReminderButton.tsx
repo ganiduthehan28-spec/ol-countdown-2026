@@ -90,24 +90,24 @@ const DailyReminderButton = () => {
       <button
         onClick={handleGetReminders}
         disabled={permission === 'granted'}
-        className="px-5 py-2 rounded-md border-none bg-blue-600 text-white cursor-pointer text-base hover:bg-blue-700 disabled:bg-gray-400"
+        className="px-5 py-2 rounded-md border-none bg-primary-color text-white cursor-pointer text-base hover:bg-secondary-color disabled:bg-border-color"
       >
         {permission === 'granted' ? 'Reminder Set' : 'Get Daily Reminders'}
       </button>
 
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg text-center shadow-lg max-w-sm w-full">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Select a time for your daily reminder</h3>
+          <div className="bg-card-background p-6 rounded-lg text-center shadow-lg max-w-sm w-full text-text-color">
+            <h3 className="text-xl font-bold mb-4 text-primary-color">Select a time for your daily reminder</h3>
             <input
               type="time"
               value={time}
               onChange={(e) => setTime(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-md mb-4 text-gray-700"
+              className="w-full p-2 border border-border-color rounded-md mb-4 bg-background-color text-text-color"
             />
             <div className="flex justify-end gap-3">
-              <button onClick={handleSaveTime} className="px-4 py-2 rounded-md border-none bg-blue-600 text-white cursor-pointer hover:bg-blue-700">Save</button>
-              <button onClick={() => setShowModal(false)} className="px-4 py-2 rounded-md border border-gray-300 bg-gray-200 text-gray-800 cursor-pointer hover:bg-gray-300">Cancel</button>
+              <button onClick={handleSaveTime} className="px-4 py-2 rounded-md border-none bg-primary-color text-white cursor-pointer hover:bg-secondary-color">Save</button>
+              <button onClick={() => setShowModal(false)} className="px-4 py-2 rounded-md border border-border-color bg-card-background text-text-color cursor-pointer hover:bg-border-color">Cancel</button>
             </div>
           </div>
         </div>

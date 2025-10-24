@@ -50,16 +50,16 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
     }
 
     timerComponents.push(
-      <span key={interval} className="bg-gray-700 rounded-lg p-5 text-white min-w-[100px] text-center shadow-lg">
-        <div className="text-4xl font-bold">{timeLeft[interval]}</div>
-        <div className="text-sm uppercase opacity-80 mt-1">{interval}</div>
+      <span key={interval} className="bg-card-background rounded-lg p-5 text-text-color min-w-[120px] text-center shadow-lg border border-border-color sm:min-w-[150px]">
+        <div className="text-5xl font-bold text-primary-color sm:text-6xl">{timeLeft[interval]}</div>
+        <div className="text-sm uppercase opacity-80 mt-1 sm:text-base">{interval}</div>
       </span>
     );
   });
 
   return (
     <div className="flex justify-center gap-5 flex-wrap mt-10">
-      {timerComponents.length ? timerComponents : <span className="text-xl text-red-500">Time's up!</span>}
+      {timerComponents.length ? timerComponents : <span className="text-xl text-secondary-color">Time's up!</span>}
     </div>
   );
 };

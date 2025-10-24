@@ -5,6 +5,7 @@ import Script from 'next/script';
 import DailyReminderButton from '@/components/DailyReminderButton';
 import PWAInstallButton from '@/components/PWAInstallButton';
 import Footer from '@/components/Footer';
+import TimedPopup from '@/components/TimedPopup'; // Import the TimedPopup component
 import './globals.css'; // Import global styles
 
 /**
@@ -54,6 +55,7 @@ export default function RootLayout({
 
         {children}
         <Footer />
+        <TimedPopup /> {/* Add the TimedPopup component here */}
 
         {/* Service Worker Registration */}
         <Script id="sw-registration" strategy="lazyOnload">

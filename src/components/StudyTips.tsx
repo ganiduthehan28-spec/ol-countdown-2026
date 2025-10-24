@@ -27,12 +27,12 @@ const StudyTips: React.FC = () => {
   };
 
   return (
-    <div className="mt-10 p-5 bg-blue-50 rounded-lg text-center shadow-md max-w-xl w-11/12">
-      <h2 className="text-2xl font-semibold text-blue-600">Study Tip of the Day</h2>
-      <p className="text-lg my-5 text-gray-700">{studyTips[currentTipIndex]}</p>
+    <div className="mt-10 p-6 bg-card-background rounded-lg text-center shadow-xl max-w-2xl w-11/12 border border-border-color text-text-color">
+      <h2 className="text-3xl font-semibold text-primary-color mb-4">Study Tip of the Day</h2>
+      <p className="text-lg my-5 text-text-color">{studyTips[currentTipIndex]}</p>
       <div className="flex justify-center gap-3">
-        <button onClick={handlePreviousTip} className="px-4 py-2 rounded-md border-none bg-blue-500 text-white cursor-pointer text-base hover:bg-blue-600">Previous</button>
-        <button onClick={handleNextTip} className="px-4 py-2 rounded-md border-none bg-blue-500 text-white cursor-pointer text-base hover:bg-blue-600">Next</button>
+        <button onClick={handlePreviousTip} className="px-5 py-2 rounded-md border-none bg-primary-color text-white cursor-pointer text-base hover:bg-secondary-color">Previous</button>
+        <button onClick={handleNextTip} className="px-5 py-2 rounded-md border-none bg-primary-color text-white cursor-pointer text-base hover:bg-secondary-color">Next</button>
       </div>
     </div>
   );
