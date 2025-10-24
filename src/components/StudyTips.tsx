@@ -2,7 +2,7 @@
 
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const studyTips = [
   "Break down your study sessions into smaller, manageable chunks.",
@@ -13,10 +13,21 @@ const studyTips = [
   "Stay hydrated and eat healthy snacks.",
   "Get enough sleep to optimize your brain function.",
   "Don't be afraid to ask for help when you need it.",
+  "Practice active recall instead of passive re-reading.",
+  "Explain concepts to someone else to solidify your understanding.",
 ];
 
 const StudyTips: React.FC = () => {
-  const [currentTipIndex, setCurrentTipIndex] = React.useState(0);
+  const [currentTipIndex, setCurrentTipIndex] = useState(0);
+
+  // Automatic rotation every 15 minutes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTipIndex((prevIndex) => (prevIndex + 1) % studyTips.length);
+    }, 15 * 60 * 1000); // 15 minutes
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleNextTip = () => {
     setCurrentTipIndex((prevIndex) => (prevIndex + 1) % studyTips.length);
