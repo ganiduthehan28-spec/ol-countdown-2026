@@ -1,40 +1,28 @@
-import { NextRequest, NextResponse } from 'next/server';
+// src/app/api/save-token/route.ts
 
-export async function POST(req: NextRequest) {
-  // Ensure env vars exist
-  if (
-    !process.env.FIREBASE_PROJECT_ID ||
-    !process.env.FIREBASE_CLIENT_EMAIL ||
-    !process.env.FIREBASE_PRIVATE_KEY
-  ) {
-    return NextResponse.json({ error: 'Firebase env not configured' }, { status: 500 });
-  }
+import { NextResponse } from 'next/server';
+import { db } from '../../../src/lib/firebase-admin';
 
-  // Lazy-import Firebase Admin
-  const admin = await import('firebase-admin');
-
-  // Initialize only if not initialized
-  if (!admin.apps.length) {
-    const serviceAccount = {
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    };
-    admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
-  }
-
+/**
+ * API route to handle saving FCM tokens to Firestore.
+ * Expects a POST request with a JSON body containing 'token' and 'time'.
+ */
+export async function POST(request: Request) {
   try {
-    const { token } = await req.json();
-    if (!token) {
-      return NextResponse.json({ error: 'Token is required' }, { status: 400 });
+    const { token, time } = await request.json();
+
+    if (!token || !time) {
+      return NextResponse.json({ error: 'Token and time are required' }, { status: 400 });
     }
 
-    const db = admin.firestore();
-    await db.collection('fcmTokens').doc(token).set({
-      created: admin.firestore.FieldValue.serverTimestamp(),
+    // Save the token and time to a Firestore collection named 'fcmTokens'
+    await db.collection('fcmTokens').add({
+      token,
+      time,
+      timestamp: new Date(),
     });
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ message: 'Token and time saved successfully' }, { status: 200 });
   } catch (error) {
     console.error('Error saving token:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
