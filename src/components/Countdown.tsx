@@ -8,10 +8,17 @@ interface CountdownProps {
   targetDate: string; // YYYY-MM-DD format
 }
 
+type TimeLeft = {
+  days?: number;
+  hours?: number;
+  minutes?: number;
+  seconds?: number;
+};
+
 const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
-  const calculateTimeLeft = () => {
+  const calculateTimeLeft = (): TimeLeft => {
     const difference = +new Date(targetDate) - +new Date();
-    let timeLeft = {};
+    let timeLeft: TimeLeft = {};
 
     if (difference > 0) {
       timeLeft = {
@@ -25,7 +32,7 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
     return timeLeft;
   };
 
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -37,15 +44,14 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
 
   const timerComponents: JSX.Element[] = [];
 
-  Object.keys(timeLeft).forEach((interval) => {
-    // @ts-ignore
+  (Object.keys(timeLeft) as Array<keyof TimeLeft>).forEach((interval) => {
     if (!timeLeft[interval]) {
       return;
     }
 
     timerComponents.push(
       <span key={interval} className="bg-gray-700 rounded-lg p-5 text-white min-w-[100px] text-center shadow-lg">
-        <div className="text-4xl font-bold">{@ts-ignore timeLeft[interval]}</div>
+        <div className="text-4xl font-bold">{timeLeft[interval]}</div>
         <div className="text-sm uppercase opacity-80 mt-1">{interval}</div>
       </span>
     );
