@@ -50,9 +50,10 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
     }
 
     timerComponents.push(
-      <span key={interval} className="bg-card-background rounded-lg p-5 text-text-color min-w-[120px] text-center shadow-lg border border-border-color sm:min-w-[150px]">
-        <div className="text-5xl font-bold text-primary-color sm:text-6xl">{timeLeft[interval]}</div>
-        <div className="text-sm uppercase opacity-80 mt-1 sm:text-base">{interval}</div>
+      <span key={interval} className="bg-card-background rounded-lg p-5 text-text-color min-w-[120px] text-center shadow-lg border border-border-color sm:min-w-[150px] transform hover:scale-105 transition-transform duration-300 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-color to-secondary-color opacity-10 animate-pulse"></div>
+        <div className="text-5xl font-bold text-primary-color sm:text-6xl relative z-10">{timeLeft[interval]}</div>
+        <div className="text-sm uppercase opacity-80 mt-1 sm:text-base relative z-10">{interval}</div>
       </span>
     );
   });

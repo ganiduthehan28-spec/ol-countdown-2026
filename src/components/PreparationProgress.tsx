@@ -27,16 +27,17 @@ const PreparationProgress: React.FC<PreparationProgressProps> = ({ startDate, en
   const progress = calculateProgress();
 
   return (
-    <div className="mt-10 p-5 bg-card-background rounded-lg shadow-lg max-w-xl w-11/12 text-center text-text-color border border-border-color">
-      <h2 className="text-2xl font-semibold text-primary-color mb-3">PREPARATION PROGRESS</h2>
-      <p className="text-lg mb-2">{progress.toFixed(2)}% of your preparation time has passed</p>
-      <div className="w-full bg-border-color rounded-full h-4 mt-4">
+    <div className="mt-10 p-6 bg-card-background rounded-lg shadow-xl max-w-2xl w-11/12 text-center text-text-color border border-border-color transform hover:scale-105 transition-transform duration-300 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-color to-secondary-color opacity-5 animate-pulse"></div>
+      <h2 className="text-3xl font-semibold text-primary-color mb-4 relative z-10">PREPARATION PROGRESS</h2>
+      <p className="text-lg mb-3 relative z-10">{progress.toFixed(2)}% of your preparation time has passed</p>
+      <div className="w-full bg-border-color rounded-full h-4 mt-4 relative z-10">
         <div
           className="bg-secondary-color h-4 rounded-full transition-all duration-500 ease-out"
           style={{ width: `${progress}%` }}
         ></div>
       </div>
-      <div className="flex justify-between text-sm mt-2">
+      <div className="flex justify-between text-sm mt-3 relative z-10">
         <span>Started: {startDate}</span>
         <span>Ends: {endDate}</span>
       </div>

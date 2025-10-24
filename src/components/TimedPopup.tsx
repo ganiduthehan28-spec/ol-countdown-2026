@@ -8,11 +8,17 @@ const TimedPopup: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 25000); // 25 seconds
+    // Check if the popup has been shown in the current session
+    const hasShownPopup = sessionStorage.getItem('hasShownPopup');
 
-    return () => clearTimeout(timer);
+    if (!hasShownPopup) {
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+        sessionStorage.setItem('hasShownPopup', 'true');
+      }, 25000); // 25 seconds
+
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   if (!isVisible) {
@@ -20,13 +26,14 @@ const TimedPopup: React.FC = () => {
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-6 rounded-lg text-center shadow-lg max-w-sm w-full text-gray-800">
-        <h3 className="text-xl font-bold mb-4">Welcome!</h3>
-        <p className="mb-4">Thanks for visiting our site. Don't forget to set your daily reminders!</p>
+    <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
+      <div className="bg-card-background p-8 rounded-lg text-center shadow-2xl max-w-md w-11/12 text-text-color border border-primary-color relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-color to-secondary-color opacity-10 animate-pulse"></div>
+        <h3 className="text-2xl font-bold mb-4 text-primary-color relative z-10">Welcome!</h3>
+        <p className="mb-6 relative z-10">Thanks for visiting our site. Don't forget to set your daily reminders!</p>
         <button
           onClick={() => setIsVisible(false)}
-          className="px-4 py-2 rounded-md border-none bg-blue-600 text-white cursor-pointer hover:bg-blue-700"
+          className="px-6 py-3 rounded-md border-none bg-primary-color text-white cursor-pointer hover:bg-secondary-color relative z-10"
         >
           Close
         </button>
