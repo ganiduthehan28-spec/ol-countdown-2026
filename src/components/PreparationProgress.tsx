@@ -33,7 +33,7 @@ const PreparationProgress: React.FC<PreparationProgressProps> = ({ startDate, en
       <p className="text-lg mb-3 relative z-10">{progress.toFixed(2)}% of your preparation time has passed</p>
       <div className="w-full bg-border-color rounded-full h-4 mt-4 relative z-10">
         <div
-          className="bg-secondary-color h-4 rounded-full transition-all duration-500 ease-out"
+          className="bg-secondary-color h-4 rounded-full transition-all duration-500 ease-out progress-bar"
           style={{ width: `${progress}%` }}
         ></div>
       </div>

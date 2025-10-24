@@ -58,7 +58,7 @@ const DailyReminderButton = () => {
 
     try {
       // Get the FCM registration token
-      const token = await getToken(messaging, { vapidKey: 'YOUR_VAPID_KEY' }); // Replace with your VAPID key
+      const token = await getToken(messaging, { vapidKey: 'BBrYkhAbdbhw0lGdWTDm7CTbIgcYoxYaCkl_tg4OkgS_H9LK5BDdWpzvq1D2CGl53zL07osx0hg-TdHgQG6Yqcc' }); // Replace with your VAPID key
 
       if (token) {
         console.log('FCM Token:', token);

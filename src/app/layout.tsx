@@ -13,8 +13,8 @@ import './globals.css'; // Import global styles
  * This is used for SEO and PWA.
  */
 export const metadata: Metadata = {
-  title: 'Next.js PWA with Firebase Notifications',
-  description: 'A Next.js PWA with Firebase push notifications.',
+  title: '2026 O/L Countdown',
+  description: 'Countdown to the 2026 O/L Examination',
   manifest: '/manifest.json',
 };
 
@@ -32,6 +32,9 @@ export default function RootLayout({
       <head>
         {/* Theme color for the browser address bar */}
         <meta name="theme-color" content="#000000" />
+        {/* Preload Poppins font for better performance */}
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" as="style" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" />
       </head>
       <body>
         {/* Google Analytics 4 script */}
@@ -48,10 +51,11 @@ export default function RootLayout({
           `}
         </Script>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', padding: '20px' }}>
-          <DailyReminderButton />
-          <PWAInstallButton />
-        </div>
+        <header className="w-full flex justify-end p-4 sm:p-6 bg-transparent absolute top-0 left-0 z-20">
+          <div className="flex gap-3">
+            <DailyReminderButton />
+          </div>
+        </header>
 
         {children}
         <Footer />
