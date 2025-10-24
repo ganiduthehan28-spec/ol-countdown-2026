@@ -1,0 +1,126 @@
+
+@import "tailwindcss";
+
+:root {
+  --background: #add8e6;
+  --foreground: #00008b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.time-card {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  padding: 2rem 1rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.time-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.time-value {
+  font-size: 3rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.time-unit {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.8;
+  color: #fff;
+}
+
+.quote-bar {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.quote-en {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.quote-si {
+  font-size: 1rem;
+  color: #fff;
+}
+
+footer {
+  margin-top: 2rem;
+  color: #00008b;
+}
+
+.tip-bar {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  text-align: center;
+  max-width: 90%;
+  width: 500px;
+}
+
+.tip-en {
+  font-size: 1.1rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.tip-si {
+  font-size: 1rem;
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .time-value {
+    font-size: 1.5rem;
+  }
+  .time-unit {
+    font-size: 0.7rem;
+  }
+  .time-card {
+    padding: 1rem 0.5rem;
+  }
+  .quote-bar {
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .quote-en {
+    font-size: 1rem;
+  }
+  .quote-si {
+    font-size: 0.8rem;
+  }
+  .tip-bar {
+    padding: 1rem;
+    margin-top: 1.5rem;
+  }
+  .tip-en {
+    font-size: 1rem;
+  }
+  .tip-si {
+    font-size: 0.9rem;
+  }
+}
