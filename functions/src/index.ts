@@ -7,58 +7,50 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 import * as admin from "firebase-admin";
-import { onSchedule } from "firebase-functions/v2/scheduler";
-
-import {setGlobalOptions} from "firebase-functions";
-import {onRequest} from "firebase-functions/https";
+import { onRequest } from "firebase-functions/v2/https";
 import * as logger from "firebase-functions/logger";
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
 if (!admin.apps.length) {
   admin.initializeApp();
 }
 
-// For cost control, you can set the maximum number of containers that can be
-// running at the same time. This helps mitigate the impact of unexpected
-// traffic spikes by instead downgrading performance. This limit is a
-// per-function limit. You can override the limit for each function using the
-// `maxInstances` option in the function's options, e.g.
-// `onRequest({ maxInstances: 5 }, (req, res) => { ... })`.
-// NOTE: setGlobalOptions does not apply to functions using the v1 API. V1
-// functions should each use functions.runWith({ maxInstances: 10 }) instead.
-// In the v1 API, each function can only serve one request per container, so
-// this will be the maximum concurrent request count.
-setGlobalOptions({ maxInstances: 10 });
-
 const examDate = new Date("2026-12-01T00:00:00"); // set your O/L exam date
 
-export const dailyCountdownReminder = onSchedule(
-  "0 5 * * *", // 5 AM every day
-  { timeZone: "Asia/Colombo" },
-  async () => {
-    const now = new Date();
-    const diffDays = Math.ceil((examDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+export const sendPushNotifications = onRequest(async (request, response) => {
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const currentTime = `${hours}:${minutes}`;
 
-    const notificationTitle = "O/L Countdown 2026 🔔";
-    const notificationBody = `${diffDays} Days Remaining! Click to open the countdown.`;
+  const snapshot = await admin.firestore().collection("fcmTokens").where("time", "==", currentTime).get();
 
-    const snapshot = await admin.firestore().collection("fcmTokens").get();
-    const tokens = snapshot.docs.map(doc => doc.id);
-    if (!tokens.length) return;
-
-    const message = {
-      notification: { title: notificationTitle, body: notificationBody },
-      webpush: { fcmOptions: { link: "https://ol-countdown-9a.netlify.app/" } },
-      tokens,
-    };
-
-    await admin.messaging().sendMulticast(message);
+  if (snapshot.empty) {
+    logger.info("No users to notify at this time.");
+    response.send("No users to notify at this time.");
+    return;
   }
-);
 
+  const tokens: string[] = [];
+  snapshot.forEach(doc => {
+    tokens.push(doc.data().token);
+  });
 
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+  const notificationTitle = "O/L Countdown 2026 🔔";
+  const notificationBody = `${diffDays} Days Remaining! Click to open the countdown.`;
+
+  try {
+    for (const token of tokens) {
+      const message = {
+        notification: { title: notificationTitle, body: notificationBody },
+        webpush: { fcmOptions: { link: "https://ol-countdown-9a.netlify.app/" } },
+        token,
+      };
+      await admin.messaging().send(message);
+    }
+    logger.info(`Successfully sent notifications to ${tokens.length} users.`);
+    response.send(`Successfully sent notifications to ${tokens.length} users.`);
+  } catch (error) {
+    logger.error("Error sending notifications:", error);
+    response.status(500).send("Error sending notifications");
+  }
+});
