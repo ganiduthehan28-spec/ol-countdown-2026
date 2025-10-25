@@ -9,7 +9,9 @@ const URLS_TO_CACHE = [
   '/',
   '/index.html',
   '/manifest.json',
-  // Add other static assets here
+  '/icons/icon.svg',
+  '/background.jpg',
+  'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap',
   '/icons/icon-72x72.png',
   '/icons/icon-96x96.png',
   '/icons/icon-128x128.png',

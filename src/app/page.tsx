@@ -26,9 +26,9 @@ export default function Home() {
 
   return (
 
-    <main className="flex flex-col items-center justify-start min-h-screen p-5 pt-24 sm:pt-32 text-center bg-background-color text-text-color font-poppins relative">
+        <main className="flex flex-col items-center justify-start min-h-screen p-4 md:p-8 pt-20 md:pt-28 text-center bg-background-color text-text-color font-poppins relative">
 
-      <h1 className="text-4xl sm:text-5xl font-extrabold text-primary-color mb-4 sm:mb-6 tracking-wide leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary-color mb-4 sm:mb-6 tracking-wide leading-tight">
 
         Apex Success Behind 9As
 

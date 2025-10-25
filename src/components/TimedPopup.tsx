@@ -20,7 +20,7 @@ const TimedPopup: React.FC = () => {
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50">
       <div className="bg-white p-8 rounded-lg text-center shadow-lg max-w-sm w-11/12">
         <h3 className="text-2xl font-bold mb-4">Join our WhatsApp Channel</h3>
         <p className="mb-6">Get daily reminders and stay motivated!</p>

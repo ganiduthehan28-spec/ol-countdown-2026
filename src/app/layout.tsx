@@ -37,6 +37,16 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" />
       </head>
       <body>
+
+        <script>
+          {`
+          if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("/firebase-messaging-sw.js")
+          .catch(err => console.error("SW registration failed:", err));
+  }
+`}
+</script>
+
         {/* Google Analytics 4 script */}
         <Script
           strategy="afterInteractive"

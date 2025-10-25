@@ -21,8 +21,8 @@ export default function ChannelPopup() {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/40 p-4">
       <div className="bg-white rounded-2xl p-6 w-full max-w-sm shadow-xl transform transition-transform duration-500 ease-out animate-popup">
-        <h2 className="text-lg md:text-xl font-bold mb-3 text-center">📢 Follow Our Channel!</h2>
-        <p className="text-gray-700 text-sm md:text-base mb-5 text-center">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 text-center">📢 Follow Our Channel!</h2>
+        <p className="text-gray-700 text-sm sm:text-base md:text-lg mb-5 text-center">
           Follow the <strong>Success Behind 9A (OL) 🇱🇰✨</strong> official channel on WhatsApp:
           <br />
           <a

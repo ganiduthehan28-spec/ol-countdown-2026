@@ -11,25 +11,16 @@ import { getToken } from 'firebase/messaging';
  * displaying a time selection modal, and saving the FCM token to the backend.
  */
 const DailyReminderButton = () => {
-  const [permission, setPermission] = useState<NotificationPermission>(
-    typeof window !== 'undefined' && 'Notification' in window
-      ? Notification.permission
-      : 'default'
-  );
+  const [permission, setPermission] = useState<NotificationPermission>('default');
   const [showModal, setShowModal] = useState(false);
   const [time, setTime] = useState('09:00');
 
   useEffect(() => {
-    // Check initial notification permission status
     if (typeof window !== 'undefined' && 'Notification' in window) {
       setPermission(Notification.permission);
     }
   }, []);
 
-  /**
-   * Handles the click event for the "Get Daily Reminders" button.
-   * Requests notification permission from the user.
-   */
   const handleGetReminders = async () => {
     if (!messaging) {
       console.warn('Messaging not available.');
@@ -42,7 +33,7 @@ const DailyReminderButton = () => {
     if (newPermission === 'granted') {
       setShowModal(true);
     } else {
-      console.warn('Notification permission denied or dismissed.');
+      alert('Push notifications are not enabled or permission not granted. Please enable them to set a reminder.');
     }
   };
 
@@ -96,7 +87,7 @@ const DailyReminderButton = () => {
       </button>
 
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-[9999]">
           <div className="bg-card-background p-6 rounded-lg text-center shadow-lg max-w-sm w-full text-text-color">
             <h3 className="text-xl font-bold mb-4 text-primary-color">Select a time for your daily reminder</h3>
             <input
